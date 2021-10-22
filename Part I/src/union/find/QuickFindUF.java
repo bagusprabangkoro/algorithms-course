@@ -1,31 +1,33 @@
+package union.find;
+
 import edu.princeton.cs.algs4.StdOut;
 
-public class QuickUnionUF {
+public class QuickFindUF {
     private int[] nodes;
-    public QuickUnionUF(int N) {
+
+    public QuickFindUF(int N) {
         nodes = new int[N];
         for (int i = 0; i < N; i++) {
             nodes[i] = i;
         }
     }
 
-    private int findRoot(int n) {
-        if (nodes[n] == n) return n;
-        return findRoot(nodes[n]);
-    }
-
     public boolean connected(int p, int q) {
-        return findRoot(p) == findRoot(q);
+        return nodes[p] == nodes[q];
     }
 
     public void union(int p, int q) {
-        int rootP = findRoot(p);
-        int rootQ = findRoot(q);
-        nodes[rootP] = rootQ;
+        int pGroup = nodes[p];
+        int qGroup = nodes[q];
+        for (int i = 0; i < nodes.length; i++) {
+            if (nodes[i] == pGroup) {
+                nodes[i] = qGroup;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        QuickUnionUF union1 = new QuickUnionUF(10);
+        QuickFindUF union1 = new QuickFindUF(10);
         union1.union(1, 2);
         union1.union(3, 4);
         union1.union(5, 6);

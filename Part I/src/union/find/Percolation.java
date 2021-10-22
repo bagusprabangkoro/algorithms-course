@@ -1,3 +1,5 @@
+package union.find;
+
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
@@ -11,7 +13,7 @@ public class Percolation {
 
   public Percolation(int n) {
     if (n < 0) {
-      throw new IllegalArgumentException("Percolation dimension must be > 0.");
+      throw new IllegalArgumentException("union.find.Percolation dimension must be > 0.");
     }
     wquf = new WeightedQuickUnionUF(n * n + 2);
     opened = new boolean[n + 1][n + 1];
